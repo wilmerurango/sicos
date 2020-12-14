@@ -1567,7 +1567,6 @@ def load_actividad(request):
     centro_actividades = centro_actividad.objects.filter(centro_costo=centro_costo).order_by('actividad')
     return render(request,'lista_Activiades.html',{'centro_actividades':centro_actividades})
 
-
 # ESTA CLASE ES PARA listar La toda fcaturacion detallada y esta OCULTA
 def fac_especialista_detalle_list(request):
     fac_especialista_detalle1= fac_especialista_detalle.objects.all()
