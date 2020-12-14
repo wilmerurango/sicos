@@ -1,0 +1,168 @@
+{% extends 'base_solicitud.html' %}
+
+
+{% block title %}
+    Filtro del area de Compras
+{% endblock title %}
+
+
+
+{% block content %}
+
+<!-- <input type="checkbox" data-toggle="toggle" data-on="Enabled" data-off="Disabled"> -->
+<!-- <input type="checkbox" id="toggle-two"> -->
+<!-- <input type="checkbox" checked data-toggle="toggle"> -->
+
+    <div class="row">
+
+        <!-- datos de ls solicitud -->
+        <div class=" row card card-register mt-1 col-lg-6 m-2">
+            <div >
+                <div class="container-fluid">
+                    <div class="card-header"><h5>Datos de  la Solicitud</h5></div>
+                    
+                    <!-- <hr> -->
+                    <div class="row">
+
+                        <div class="form-group col-lg-4">
+                            Cargo Quien Solicita
+                            <div  >
+                                <input disabled type="text" value={{solicitud.usuario}}>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-lg-4">
+                            Fecha de Solicitud
+                            <div >
+                                <input disabled type="text" value={{solicitud.fecha_solici}} >
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <hr>
+                    <div class="row">
+
+                        <div class="form-group col-lg-4">
+                            Unidad de Medida
+                            <div  >
+                                <input disabled type="text" value={{solicitud.unidadMedida}} >
+                            </div>
+                        </div>
+
+                        <div class="form-group col-lg-4">
+                            Cantidad
+                            <div >
+                                <input disabled type="text" value={{solicitud.cantidad}} >
+                            </div>
+                        </div>
+
+                        <div class="form-group col-lg-4">
+                            Referencia
+                            <div >
+                                <input disabled type="text" value={{solicitud.ref}} >
+                            </div>
+                        </div>
+
+                    </div>
+                
+
+                    <div class="row">
+                        <div class="form-group col-lg-4">
+                            Descripción del Activo
+                            <div >
+                                <input disabled type="textarea" value={{solicitud.description}} >
+                            </div>
+                        </div>
+
+
+                        <div class="form-group col-lg-4">
+                            Justificación
+                            <div  >
+                                <input disabled type="textarea" value={{solicitud.justificacion}} >
+                                
+                            </div>
+                        </div>
+
+                        <div class="form-group col-lg-4">
+                            Observación
+                            <div  >
+                                <input disabled type="textarea" value={{solicitud.obs}}>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    
+                    <div class="row">
+                        <div class="form-group col-lg-4">
+                            Desición de Gerencia
+                            <div >
+                                <input disabled type="textarea" value={{estado_prin.estado_Principal.estado}}>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+
+            </div>
+        </div>
+        </div>
+
+        <div class="row card card-register mt-1 col-lg-6 m-2">
+            <div class="card-header"><h5> Definir el Estado de la Compra</h5></div>
+
+            <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+
+                <div class="form-label-group col-lm-4 ml-1"  >
+                    {{form.estado_Principal}}
+                </div>
+                
+                <div class="row form-group">
+
+                    <div class="form-label-group col-lg-6" >
+                        {{form.quien_aprobo}}
+                        <label class="ml-3" for="firstName">Quien Aprobó:</label>
+                    </div>
+
+                    <div class="form-label-group col-lg-5"  >
+                        {{form.fecha_aprob}}
+                        <label class="ml-3" for="firstName">Fecha Aprobación:</label>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        Estado:
+                    </div>
+                    <div >
+                        {{form.estado}}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        Observación:
+                    </div>
+                    <div >
+                        {{form.obs}}
+                    </div>
+                </div>
+
+                <hr>
+                <input type="submit" class="btn btn-info" value="Guardar">
+                <a class="btn btn-danger" href="{% url 'Estado_Secundario_list' %}">Cancelar</a>
+
+
+            </form>
+            </div>
+
+        </div>
+
+    </div>
+  {% endblock content %}
+ 
+
+

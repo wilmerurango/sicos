@@ -1,0 +1,103 @@
+{% extends 'base_solicitud.html' %}
+
+{% block title %}
+  Registrar Usuario
+{% endblock title %}
+
+
+{% block content %}
+ 
+ 
+ <div class="card card-register">
+    <div class="card-header">Registrar Usuario</div>
+    <div class="card-body">
+      <form method="post">
+        {% csrf_token %}
+        <div class="container-fluid">
+          <div class="row">
+            <div class="form-group col-lg-4">
+              <div class="form-label-group" >
+                {{form2.first_name}}
+                <!-- <input type="text" id="firstName" class="form-control" placeholder="First name" required="required" autofocus="autofocus"> -->
+                <label for="firstName">Nombres</label>
+              </div>
+            </div>
+    
+            <div class="form-group col-lg-4">
+              <div class="form-label-group"  >
+                {{form2.last_name}}
+                <!-- <input type="text" id="firstName" class="form-control" placeholder="First name" required="required" autofocus="autofocus"> -->
+                <label for="firstName">Apellidos</label>
+              </div>
+            </div>
+    
+            <div class="form-group col-lg-4">
+              <div class="form-label-group"  >
+                {{form2.username}}
+                <!-- <input type="text" id="firstName" class="form-control" placeholder="First name" required="required" autofocus="autofocus"> -->
+                <label for="firstName">Nombre Usuario</label>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="form-group col-lg-6">
+              <div class="form-label-group" id="inputEmail" >
+                {{form2.email}}
+                <!-- <input type="text" id="firstName" class="form-control" placeholder="First name" required="required" autofocus="autofocus"> -->
+                <label for="firstName">Email</label>
+              </div>
+            </div>
+    
+            <div class="form-group col-lg-6">
+              <div class="form-label-group" id="password" >
+                {{form2.password}}
+                <!-- <input type="text" id="firstName" class="form-control" placeholder="First name" required="required" autofocus="autofocus"> -->
+                <label for="firstName">Contraseña</label>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <div class="form-group col-lg-4">
+             
+              <div class="form-label-group" >
+                
+                {{form.proceso_solicitante}}
+                <span class="text-secondary">Proceso Solicitante</span>  
+                
+              </div>
+            </div>
+    
+            <div class="form-group col-lg-4">
+              <div class="form-label-group" >
+                {{form.cargo}}
+                <!-- <input type="text" id="firstName" class="form-control" placeholder="First name" required="required" autofocus="autofocus"> -->
+                <label for="firstName">Cargo</label>
+              </div>
+            </div>
+
+          </div>
+
+
+          <input  onclick="return ConfirmCreaUser()" type="submit" class="btn btn-info" value="Guardar">
+          <a  class="btn btn-danger" href="{% url 'home' %}">Cancelar</a>
+
+        </div>
+       
+
+        
+
+        
+
+
+      </form>
+    </div>
+  </div>
+
+
+  {% endblock content %}
+ 

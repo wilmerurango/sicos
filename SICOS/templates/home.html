@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static%}
+
+{% block content %}
+
+
+
+{% block scripts %}
+    
+
+{% endblock scripts %}
+
+
+
+<div class="alert alert-success" role="alert">
+    <h4></h4>BIENVENIDO <h5 class="d-inline">  {{user.first_name}} {{user.last_name}} </h5>
+    <hr> 
+    haz Iniciado Sesión como: <h5 class="d-inline">{{user.username| upper}}</h5> 
+</div>
+
+{% block nabvar%}
+
+{% endblock nabvar%}
+
+
+{% block menu %}
+
+{% endblock menu %}
+
+<div class="container-fluid">
+
+    <div class="row row-cols-2">
+
+        <div class="col">
+            <div class="jumbotron"  width=7%>
+                <h3>¿ QUE DESEAS HACER HOY ?</h3>
+                <hr>
+                <a class="btn btn-primary" href="{% url 'base' %}">Cuentas por Pagar</a>
+                <a class="btn btn-primary" href="{% url 'base_cirugia' %}">Procedimientos Quirurgicos</a>
+                <a class="btn btn-primary" href="{% url 'base_solicitud' %}">Solicitudes</a>
+            </div>
+        </div>
+    
+        <div>
+
+            <center>
+                <img  width=13%   height=13% src="{% static 'img/sicos_logo_negro.jpg' %}"   alt="Logo SICOS">
+            </center>
+
+            <center>
+                <h1 >SICOS</h1>
+            </center>
+
+            <hr>
+            <hr>
+    
+            <h2 ><center>Sistema de Costos de la Fundación Clínica del Río</center></h2>
+    
+        </div>
+
+        
+       
+
+    </div>
+</div>
+<!-- <div onmousemove="ocultar_bi()">
+    <iframe width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiNDExMTUwNjUtMTJjMS00NTFhLWFhYjctNDAzZDRjYzJkNzZkIiwidCI6Ijc4MTI5MTFjLWM0OWUtNDFiZC05OGEwLWE3NGVlOWE5ZTNkYyIsImMiOjR9" frameborder="0" allowFullScreen="true"></iframe>
+</div> -->
+
+<script>
+    function ocultar_bi()
+    {
+        // var ocul = document.getElementsByClassName("socialSharingFlyout");
+        // const ocul = document.querySelectorAll('.logoBar');
+        // ocul.removeAttribute('class'); 
+        // var ocul = document.getElementsByClassName("logoBar");
+        // alert("hola mundo")
+        // ocul.style.display = "none";
+        // ocul.classname = "socialSharing2";
+    }
+    
+</script>
+{% endblock content%} 
+<center></center>

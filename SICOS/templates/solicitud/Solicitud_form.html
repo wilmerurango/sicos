@@ -1,0 +1,157 @@
+{% extends 'base_solicitud.html' %}
+
+{% block title %}
+  Registrar Solicitud
+{% endblock title %}
+
+
+{% block content %}
+    <center>
+        <div class="card col-lg-10">
+            <div class="card-header">Realizar Solicitud</div>
+            <div class="card-body">
+              <form method="post">
+                {% csrf_token %}
+
+                <div class="container-fluid">
+
+                    <!-- <h5>Datos de quien realiza la Solicitud</h5> -->
+                    <!-- <hr> -->
+                    <div class="row">
+
+                        <div class="form-group col-lg-4">
+                            Cargo Quien Solicita
+                            <div  >
+                                {{form.usuario}}
+                            </div>
+                        </div>
+
+                        <div class="form-group col-lg-4">
+                            Fecha de Solicitud
+                            <div >
+                                {{form.fecha_solici }}
+                             
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <hr>
+                    <div class="row">
+
+                        <div class="form-group col-lg-4">
+                            Unidad de Medida
+                            <div  >
+                                {{form.unidadMedida}}
+                                
+                            </div>
+                        </div>
+
+                        <div class="form-group col-lg-4">
+                            Cantidad
+                            <div >
+                                {{form.cantidad}}
+                            </div>
+                        </div>
+
+                        <div class="form-group col-lg-4">
+                            Referencia
+                            <div >
+                                {{form.ref}}
+                            </div>
+                        </div>
+        
+                    </div>
+                   
+
+                    <div class="row">
+                        <div class="form-group col-lg-4">
+                            Descripción del Articulo o Activo
+                            <div >
+                                {{form.description}}
+                            </div>
+                        </div>
+
+        
+                        <div class="form-group col-lg-4">
+                            Justificación
+                            <div  >
+                                {{form.justificacion}}
+                            </div>
+                        </div>
+
+                        <div class="form-group col-lg-4">
+                            Observación
+                            <div  >
+                                {{form.obs}}
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+
+        
+                  <input type="submit" class="btn btn-info" value="Guardar">
+                  <a  class="btn btn-danger" href="{% url 'crear_solicitud' %}">Cancelar</a>
+        
+                </div>
+               
+              </form>
+            </div>
+        </div>
+
+    </center>
+
+    <hr>
+
+    <div>
+        {%if solicituds %}
+        <div class="card-body">
+            <div class="table-responsive">
+        
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table table-bordered dataTable table table-hover" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                            <thead>
+                            <tr role="row">
+                                <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Name: activate to sort column descending" style="width: 71px;" aria-sort="ascending"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Código</font></font></th>
+                                <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Name: activate to sort column descending" style="width: 71px;" aria-sort="ascending"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Unidad_de_Medida</font></font></th>
+                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 54px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Cantidad</font></font></th>
+                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 54px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Descripción_del_Articulo_o_Activo</font></font></th>
+                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 52px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Referencia</font></font></th>
+                                <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Name: activate to sort column descending" style="width: 71px;" aria-sort="ascending"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Justificación</font></font></th>
+                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 54px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Observación</font></font></th>
+                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 54px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Cargo_Quien_Solicita</font></font></th>
+                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 52px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Fecha_de_Solicitud</font></font></th>
+                            </tr>
+                            </thead>
+    
+                            <tbody>              
+    
+                                {% for solicitud in solicituds %}  
+                                <tr role="row" class="odd">
+                                    <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{   solicitud.id}}</font></font></td>
+                                    <td class="sorting_1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{solicitud.unidadMedida}}</font></font></td>
+                                    <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{   solicitud.cantidad}}</font></font></td>
+                                    <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{   solicitud.description}}</font></font></td>
+                                    <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{   solicitud.ref}}</font></font></td>
+                                    <td class="sorting_1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{solicitud.justificacion}}</font></font></td>
+                                    <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{   solicitud.obs}}</font></font></td>
+                                    <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{   solicitud.usuario}}</font></font></td>
+                                    <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{   solicitud.fecha_solici}}</font></font></td>
+    
+                                </tr>
+                                {% endfor %}
+    
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif%}
+    
+
+    </div>
+ 
+  {% endblock content %}
+ 

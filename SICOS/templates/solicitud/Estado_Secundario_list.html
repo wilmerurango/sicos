@@ -1,0 +1,204 @@
+{% extends 'base_solicitud.html' %}
+{% load humanize %}
+
+
+{% block title %}
+    Estado del area de Compras
+{% endblock title %}
+
+
+{% block content %}
+    <div class="card mb-3">
+        <div>
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                  <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Pendiente</a>
+                  <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Gestionado</a>
+                  <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Denegado por Gerencia</a>
+
+                </div>
+            </nav>
+    
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            
+                    {%if Estado_Secundarios %}
+                        <div class="card-body">
+                            <div class="table-responsive">
+                        
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table class="table table-bordered dataTable table table-hover" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                            <thead>
+                                            <tr role="row">
+                                                <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Name: activate to sort column descending" style="width: 71px;" aria-sort="ascending"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Id</font></font></th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 54px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Desicion_Gerencia</font></font></th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 54px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Solicitud</font></font></th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 52px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Estado</font></font></th>
+                                                <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Name: activate to sort column descending" style="width: 71px;" aria-sort="ascending"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Usuario_que_Aprobó_o_Denegó</font></font></th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 54px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Fecha de Aprobación</font></font></th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 54px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Observación</font></font></th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 52px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Acción</font></font></th>
+                                            </tr>
+                                            </thead>
+            
+                                            <tbody>              
+            
+                                                {% for Estado_Secundario in Estado_Secundarios %}  
+                                                <tr role="row" class="odd">
+                                                    <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{   Estado_Secundario.id}}</font></font></td>
+                                                    <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{   Estado_Secundario.estado_Principal.estado}}</font></font></td>
+                                                    <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{   Estado_Secundario.estado_Principal.solicitud.ref}}</font></font></td>
+                                                    <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{   Estado_Secundario.estado}}</font></font></td>
+                                                    <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{   Estado_Secundario.quien_aprobo}}</font></font></td>
+                                                    <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{   Estado_Secundario.fecha_aprob}}</font></font></td>
+                                                    <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{   Estado_Secundario.obs}}</font></font></td>
+                                                    <td>
+                                                        <font style="vertical-align: inherit;">
+                                                            <font style="vertical-align: inherit;">
+                                                                <a class= "btn btn-primary btn-circle" href= "{% url 'Estado_Secundario_edit' Estado_Secundario.id%}" ><ion-icon name="create"></ion-icon></a></a> 
+                                                            </font>
+                                                        </font>
+                                                    </td>
+            
+                                                </tr>
+                                                {% endfor %}
+            
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {%else%}
+                        <div class="alert alert-dark" role="alert">
+                            <h4>No hay Solicitudes Pendientes</h4>
+                        </div>
+                    {% endif%}
+
+                </div>
+
+                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+                    {%if Estado_Secundarios_gest %}
+                        <div class="card-body">
+                            <div class="table-responsive">
+                        
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table class="table table-bordered dataTable table table-hover" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                            <thead>
+                                            <tr role="row">
+                                                <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Name: activate to sort column descending" style="width: 71px;" aria-sort="ascending"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Id</font></font></th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 54px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Desicion_Gerencia</font></font></th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 54px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Solicitud</font></font></th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 52px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Estado</font></font></th>
+                                                <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Name: activate to sort column descending" style="width: 71px;" aria-sort="ascending"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Usuario_que_Aprobó_o_Denegó</font></font></th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 54px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Fecha de Aprobación</font></font></th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 54px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Observación</font></font></th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 52px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Acción</font></font></th>
+                                            </tr>
+                                            </thead>
+            
+                                            <tbody>              
+            
+                                                {% for Estado_Secundario in Estado_Secundarios_gest %}  
+                                                <tr role="row" class="odd">
+                                                    <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{   Estado_Secundario.id}}</font></font></td>
+                                                    <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{   Estado_Secundario.estado_Principal.estado}}</font></font></td>
+                                                    <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{   Estado_Secundario.estado_Principal.solicitud.ref}}</font></font></td>
+                                                    <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{   Estado_Secundario.estado}}</font></font></td>
+                                                    <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{   Estado_Secundario.quien_aprobo}}</font></font></td>
+                                                    <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{   Estado_Secundario.fecha_aprob}}</font></font></td>
+                                                    <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{   Estado_Secundario.obs}}</font></font></td>
+                                                    <td>
+                                                        <font style="vertical-align: inherit;">
+                                                            <font style="vertical-align: inherit;">
+                                                                <a class= "btn btn-primary btn-circle" href= "{% url 'Estado_Secundario_edit' Estado_Secundario.id%}" ><ion-icon name="create"></ion-icon></a></a> 
+                                                            </font>
+                                                        </font>
+                                                    </td>
+            
+                                                </tr>
+                                                {% endfor %}
+            
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {%else%}
+                        <div class="alert alert-dark" role="alert">
+                            <h2>No hay Solicitudes Gesionadas</h2>
+                        </div>
+                    {% endif%}
+
+                </div>
+
+                <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                    {%if Estado_Secundario_dene %}
+                        <div class="card-body">
+                            <div class="table-responsive">
+                        
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table class="table table-bordered dataTable table table-hover" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Name: activate to sort column descending" style="width: 71px;" aria-sort="ascending"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Id</font></font></th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 54px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Desicion_Gerencia</font></font></th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 54px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Solicitud</font></font></th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 52px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Estado</font></font></th>
+                                                    <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Name: activate to sort column descending" style="width: 71px;" aria-sort="ascending"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Usuario_que_Aprobó_o_Denegó</font></font></th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 54px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Fecha de Aprobación</font></font></th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 54px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Observación</font></font></th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 52px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Acción</font></font></th>
+                                                </tr>
+                                            </thead>
+            
+                                            <tbody>              
+            
+                                                {% for Estado_Secundario in Estado_Secundario_dene %}  
+                                                <tr role="row" class="odd">
+                                                    <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{   Estado_Secundario.id}}</font></font></td>
+                                                    <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{   Estado_Secundario.estado_Principal.estado}}</font></font></td>
+                                                    <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{   Estado_Secundario.estado_Principal.solicitud.ref}}</font></font></td>
+                                                    <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{   Estado_Secundario.estado}}</font></font></td>
+                                                    <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{   Estado_Secundario.quien_aprobo}}</font></font></td>
+                                                    <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{   Estado_Secundario.fecha_aprob}}</font></font></td>
+                                                    <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{   Estado_Secundario.obs}}</font></font></td>
+                                                    <td>
+                                                        <font style="vertical-align: inherit;">
+                                                            <font style="vertical-align: inherit;">
+                                                                <a class= "btn btn-primary btn-circle" href= "{% url 'Estado_Secundario_edit' Estado_Secundario.id%}" ><ion-icon name="create"></ion-icon></a></a> 
+                                                            </font>
+                                                        </font>
+                                                    </td>
+            
+                                                </tr>
+                                                {% endfor %}
+            
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {%else%}
+                        <div class="alert alert-dark" role="alert">
+                            <h2>No hay Solicitudes Denegadas</h2>
+                        </div>
+                    {% endif%}
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+    
+{% endblock content %}
+
+
+                                  
