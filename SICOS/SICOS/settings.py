@@ -88,8 +88,8 @@ WSGI_APPLICATION = 'SICOS.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'clinica_del_rio_db',
-        'USER': 'root',
+        'NAME': 'avances',
+        'USER': 'wilmer',
         'PASSWORD': '09241995',
         'HOST': 'localhost',
         'PORT': '3306',

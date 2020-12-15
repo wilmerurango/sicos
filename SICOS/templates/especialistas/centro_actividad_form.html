@@ -8,7 +8,7 @@
 {% block content %}
 
   <div class="card card-register mt-5">
-    <!-- <div class="card-header">Registrar Centro de Costo</div> -->
+    <div class="card-header">Registrar Actividades de cada Especialista</div>
     <div class="card-body">
       <form method="post">
         {% csrf_token %}
@@ -16,8 +16,7 @@
         <div class="form-group">
           <div class="form-label-group" id="inputEmail">
             <span>Especialista</span>
-            {{form.especialista}
-
+            {{form.contrato}}
           </div>
         </div>
         
@@ -25,8 +24,6 @@
           <div class="form-label-group" id="inputEmail" >
             <span>Centro de Costo</span>
             {{form.centro_costo}}
-            <!-- <input type="text" id="firstName" class="form-control" placeholder="First name" required="required" autofocus="autofocus"> -->
-            <!-- <label for="firstName">Centro de Costo</label> -->
           </div>
         </div>
 
@@ -35,15 +32,13 @@
           <div class="form-label-group" id="inputEmail" >
             <span>Actividad</span>
             {{form.actividad}}
-            <!-- <input type="text" id="firstName" class="form-control" placeholder="First name" required="required" autofocus="autofocus"> -->
-            <!-- <label for="firstName">Actividad</label> -->
+
           </div>
         </div>
 
         <div class="form-group">
           <div class="form-label-group" id="inputEmail" >
             {{form.nombre_centro_act}}
-            <!-- <input type="text" id="firstName" class="form-control" placeholder="First name" required="required" autofocus="autofocus"> -->
             <label for="firstName">Nombre Cuenta</label>
           </div>
         </div>
@@ -51,7 +46,6 @@
         <div class="form-group">
           <div class="form-label-group" id="inputEmail" >
             {{form.cuenta}}
-            <!-- <input type="text" id="firstName" class="form-control" placeholder="First name" required="required" autofocus="autofocus"> -->
             <label for="firstName">N° Cuenta</label>
           </div>
         </div>

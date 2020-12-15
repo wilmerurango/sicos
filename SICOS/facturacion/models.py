@@ -193,7 +193,7 @@ class actividad(models.Model):
 
 
 class centro_actividad(models.Model):
-    especialista = models.ForeignKey(especialista, null=True, on_delete = models.PROTECT, verbose_name='Especialista')
+    contrato = models.ForeignKey(contrato, null=True, on_delete = models.PROTECT, verbose_name='Especialista')
     centro_costo = models.ForeignKey(centro_costo, null=True, blank=False, on_delete=models.CASCADE, verbose_name='Centro de Costo')
     actividad = models.ForeignKey(actividad, null=True, blank=False, on_delete=models.CASCADE, verbose_name='Actividad')
     nombre_centro_act = models.CharField('Nombre Cuenta', max_length=70)
