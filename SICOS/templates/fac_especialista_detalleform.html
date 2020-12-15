@@ -22,7 +22,9 @@ CPP Detalle
 
     <div class="d-inline-block col-sm-3">
       <div class="d-inline-block col-sm-12"> <span class="small"> <strong>Cod. Factura: </strong> </span></div>
-      <div class="d-inline-block col-sm-14">{{form.fac_especialista}} </div>
+      <div class="d-inline-block col-sm-14">
+        {{form.fac_especialista}}
+      </div>
     </div>
 
     <div class="d-inline-block col-sm-3">
@@ -81,11 +83,13 @@ CPP Detalle
   $("#id_centro_costo").change(function () {
     var url = $("#fac_especialista_detalleform").attr("data-actividades-url");  // get the url of the `load_cities` view
     var centro_costoId = $(this).val();  // get the selected country ID from the HTML input
+    var codigo = document.getElementById("id_fac_especialista").value;
 
     $.ajax({                       // initialize an AJAX request
       url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
       data: {
-        'centro_costo': centro_costoId       // add the country id to the GET parameters
+        'centro_costo': centro_costoId,     // add the country id to the GET parameters
+        'id_fac': codigo
       },
       success: function (data) {   // `data` is the return of the `load_cities` view function
         $("#id_centro_actividad").html(data);  // replace the contents of the city input with the data that came from the server

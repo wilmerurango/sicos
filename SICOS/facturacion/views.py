@@ -1564,7 +1564,10 @@ def fac_especialista_detallecrear(request, id_):
 #vista para el filtro de selecccion
 def load_actividad(request):
     centro_costo = request.GET.get('centro_costo')
-    centro_actividades = centro_actividad.objects.filter(centro_costo=centro_costo).order_by('actividad')
+    id_fac = request.GET.get('id_fac')
+    fac_especialis = fac_especialista.objects.get(id = id_fac)
+    contrat = contrato.objects.filter(especialista = fac_especialis.especialista)
+    centro_actividades = centro_actividad.objects.filter(centro_costo=centro_costo, contrato = contrat.first()).order_by('actividad')
     return render(request,'lista_Activiades.html',{'centro_actividades':centro_actividades})
 
 # ESTA CLASE ES PARA listar La toda fcaturacion detallada y esta OCULTA

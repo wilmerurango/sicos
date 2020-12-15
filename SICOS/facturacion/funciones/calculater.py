@@ -130,8 +130,6 @@ class factura_pdf():
                         else:
                             if unico[j]==k.centro_actividad.cuenta:
                                 suma_pro =  suma_pro + k.valor 
-
-
                     resulxcuenta_mf[j,0] = suma_pro 
                     
                 resul[contador_mt,0]=sum(resulxcuenta_mf)
