@@ -1,0 +1,12 @@
+/facturacion/__pycache__
+/facturacion/funciones/__pycache__
+/facturacion/migrations
+
+/cirugia/__pycache__
+/cirugia/funciones/__pycache__
+/cirugia/migrations
+
+/solicitud/__pycache__
+/solicitud/migrations
+
+settings.py
