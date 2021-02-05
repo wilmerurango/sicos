@@ -141,3 +141,10 @@ STATICFILES_URL = os.path.join(BASE_DIR,'static')
 LOGIN_REDIRECT_URL = reverse_lazy('home')
 
 LOGOUT_REDIRECT_URL = reverse_lazy('login')
+
+
+EMAIL_HOST = 'smtp.live.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'analista.costos@clinicadelrio.org'
+EMAIL_HOST_PASSWORD = '@WILmer24'
+EMAIL_USE_TLS = True 

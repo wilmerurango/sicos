@@ -1,4 +1,6 @@
 {
     "python.pythonPath": "C:\\Users\\ANALISTA_COSTOS\\AppData\\Local\\Programs\\Python\\Python38-32\\python.exe",
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "workbench.activityBar.iconClickBehavior": "focus",
+    "workbench.view.alwaysShowHeaderActions": true
 }

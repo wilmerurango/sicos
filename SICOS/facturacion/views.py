@@ -23,6 +23,11 @@ import copy
 import numpy as np
 from django.urls import path
 
+from django.template.loader import get_template #importar plantillas
+from django.core.mail.message import EmailMultiAlternatives
+from django.core.mail import EmailMessage
+from django.conf import settings
+
 #login
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
@@ -1279,12 +1284,33 @@ def Reporte_servicios_Pdf(request, id_):
 #|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 #==================================================================================================
 
+def EnviarMail(mail):
+    contexto = {'mail':mail}
+    template = get_template('platilla_mail.html')
+    content = template.render(contexto)
+
+    email = EmailMessage(
+        'correo de prueba',
+        'mensaje de descripcion',
+        settings.EMAIL_HOST_USER,
+        [mail],
+        # cc = [] #copia de correo
+    )
+    email.attach('platilla_mail.html',content, 'text/html')
+    email.attach_file('C:/Env/SICOS/facturacion/ESPECIALISTAS_POR_EVENTO.xlsx')
+    email.send()
+ 
+def base(request,*args, **kwargs):
+
+    if request.method == 'POST':
+        mail = request.POST.get('mail')
+        EnviarMail(mail)
+
+    return render(request, 'base.html', {})
+
 
 def index(request,*args, **kwargs):
     return render(request, 'home.html', {})
-
-def base(request,*args, **kwargs):
-    return render(request, 'base.html', {})
 
 def base_cirugia(request,*args, **kwargs):
     return render(request, 'base_cirugia.html', {})

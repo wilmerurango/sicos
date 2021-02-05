@@ -169,15 +169,6 @@ class Reporte_Honorarios_excel(TemplateView):
         wbb.save(response)
         return response
     
-
-
-
-# pagina de error
-def mi_error_404(request):
-    nombre_template = '404.html'
-
-    return page_not_found(request, template_name=nombre_template)
-
 class Reporte_Consolidado_excel(TemplateView):
     
     def get(self, request, *args, **kwargs):
@@ -272,6 +263,15 @@ class Reporte_Consolidado_excel(TemplateView):
         response['content-Disposition'] = content
         wb.save(response)
         return response
+
+
+
+# pagina de error
+def mi_error_404(request):
+    nombre_template = '404.html'
+
+    return page_not_found(request, template_name=nombre_template)
+
 
     
 #vista de consulta de datos
@@ -423,24 +423,6 @@ def procedimiento_list(request):
     #     nuevo_registro.save()
 
 
-
-    # Some other example server values are
-    # server = 'localhost\sqlexpress' # for a named instance
-    # server = 'myserver,port' # to specify an alternate port
-    # server = '192.168.1.200'
-    # database = 'dgempres01'
-    # username = 'bi_query'
-    # password = 'RioBiQ@97='
-    # cnxn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
-    # cursor = cnxn.cursor()
-
-    # #Sample select query
-    # cursor.execute("SELECT * from ISS2001_UVR;") 
-    # row = cursor.fetchone() 
-    # while row: 
-    #     print(row[0],row[1],row[2])
-    #     row = cursor.fetchone()
-
     procedimiento_1 = procedimiento.objects.all()
     contexto = {'procedimientos':procedimiento_1}
     return render(request, 'cirugia/procedimiento_list.html',contexto)
@@ -517,10 +499,6 @@ def concepto_honorario_list(request):
     #     nuevo_registro.costo = costoP# costo llenado
 
     #     nuevo_registro.save()
-
-
-
-
 
 
     concepto_honorario_1 = concepto_honorario.objects.all()
@@ -762,60 +740,50 @@ def canastaElim(request, id_):
 #honorario
 def honorario_list(request):
     
-    # archi = xlrd.open_workbook('C:\\CPP\\entvirtual\\src\\cirugia\\archivo.xlsx', on_demand=True)
-    # hoja1 = archi.sheet_by_index(14)
-    
-    # cont  = 1
-    # for i in honorario.objects.all():
-    #     costo = hoja1.cell_value(cont,9)
-    #     i.costo = costo
-    #     i.save()
-    #     cont += 1
-        
-    #     for m in nombre_canasta.objects.all():
-    #         if cana == m.nombre_canasta:
-    #             i.nombre_canasta = m
-    #             i.save()
-        
-    #     for n in concepto_honorario.objects.all():
-    #         if concep == n.nombre_concep_hon:
-    #             i.concepto_honorario = n
-    #             i.save()
+    # archi = xlrd.open_workbook('C:\\Env\\SICOS\\cirugia\\archivo.xlsx', on_demand=True)
+    # hoja1 = archi.sheet_by_index(2)
 
-    #     cont += 1
-    
-    # cont = 1
-    # for i in range(1,hoja1.nrows): 
-    #     especi = hoja1.cell_value(i,0)
-    #     cir = hoja1.cell_value(i,1)
-    #     cana = hoja1.cell_value(cont,2)
+    # # ingresar registros nuevos de honorario
+    # for i in range(1,hoja1.nrows):
+    #     esp = hoja1.cell_value(i,0)
+    #     proc = hoja1.cell_value(i,1)
+    #     canasta = hoja1.cell_value(i,2)
     #     concep = hoja1.cell_value(i,3)
-    #     info = hoja1.cell_value(i,4)
-        
+    #     vlr = hoja1.cell_value(i,4)
 
-    #     w = honorario()
-        
-    #     for j in tipo_proc.objects.all():
-    #         if especi == j.nombre_tipo_proc:
-    #             w.tipo_proc = j
-                
-    #     for k in procedimiento.objects.all():
-    #         if cir == k.nombre_proc:
-    #             w.procedimiento=k
+    #     nuevo_registro = honorario()
 
-    #     for m in canasta.objects.all():
-    #         if cana == m.nombre_canasta:
-    #             w.canasta = m
-                
-    #     for n in concepto_honorario.objects.all():
-    #         if concep == n.nombre_concep_hon:
-    #             w.concepto_honorario = n
-                
-    #     w.info = info
-        
-    #     cont += 1
-        
-    #     w.save()
+    #     # llenar especialidad
+    #     # tipo_esp = tipo_proc.objects.all()
+    #     # for j in tipo_esp:
+    #     #     if esp == j.nombre_tipo_proc:
+    #     #         nuevo_registro.tipo_proc = j #esp llenado
+
+    #     nuevo_registro.tipo_proc = tipo_proc.objects.get(id=7) #esp llenado por especialidad
+
+    #     # llenar procedimiento
+    #     proced = procedimiento.objects.all()
+    #     for j in proced:
+    #         if proc == j.nombre_proc:
+    #             nuevo_registro.procedimiento = j
+
+
+    #     # llenar nombre_canasta
+    #     canast = nombre_canasta.objects.all()
+    #     for j in canast:
+    #         if canasta == j.nombre_canasta:
+    #             nuevo_registro.nombre_canasta = j
+
+
+    #     # llenar concepto_honorario
+    #     honor = concepto_honorario.objects.all()
+    #     for j in honor:
+    #         if concep == j.nombre_concep_hon:
+    #             nuevo_registro.concepto_honorario = j
+
+    #     nuevo_registro.costo = vlr #esp llenado
+
+    #     nuevo_registro.save()
     
     honorario_1 = honorario.objects.all()
     contexto = {'honorarios':honorario_1}
@@ -879,18 +847,6 @@ def constanteElim(request, id_):
 
 #concepto_salario
 def concepto_salario_list(request):
-    
-    # archi = xlrd.open_workbook('C:\\CPP\\entvirtual\\src\\cirugia\\archivo.xlsx', on_demand=True)
-    # hoja1 = archi.sheet_by_index(13)
-    
-
-    # for i in range(1,hoja1.nrows): 
-    #     especi = hoja1.cell_value(i,0)
-        
-    #     a= concepto_salario()
-    #     a.nombre_concep_sal = especi
-    #     a.save()
-    
     concepto_salario_1 = concepto_salario.objects.all()
     contexto = {'concepto_salarios':concepto_salario_1}
     return render(request, 'cirugia/concepto_salario_list.html',contexto)
@@ -983,61 +939,53 @@ def estanciaElim(request, id_):
 
 #salario
 def salario_list(request):
-    
-    archi = xlrd.open_workbook('C:\\Env\\SICOS\\cirugia\\archivo.xlsx', on_demand=True)
-    hoja1 = archi.sheet_by_index(0)
 
-    
-    # cont = 1
-    # for i in salario.objects.all():
-    #     i.costo = hoja1.cell_value(cont,5)
-    #     i.save()
-    #     cont += 1
-    
-    
     # archi = xlrd.open_workbook('C:\\Env\\SICOS\\cirugia\\archivo.xlsx', on_demand=True)
-    # hoja1 = archi.sheet_by_index(0)
+    # hoja1 = archi.sheet_by_index(1)
 
-    # # # ingresar registros nuevos de honorario
+    # # ingresar registros nuevos salarios
     # for i in range(1,hoja1.nrows):
-    #     tipo_proc_P = hoja1.cell_value(i,0)
-    #     procedimiento_P = hoja1.cell_value(i,1)
-    #     concepto_salario_P = hoja1.cell_value(i,2)
-    #     position_P = hoja1.cell_value(i,3)
-    #     costo_P = hoja1.cell_value(i,4)
-
+    #     # esp = hoja1.cell_value(i,0)
+    #     proc = hoja1.cell_value(i,1)
+    #     concep = hoja1.cell_value(i,2)
+    #     ubica = hoja1.cell_value(i,3)
+    #     valor = hoja1.cell_value(i,4)
 
     #     nuevo_registro = salario()
 
-    #     # llenar Especialidad
-    #     tipo_pro = tipo_proc.objects.all()
-    #     for j in tipo_pro:
-    #         if tipo_proc_P == j.nombre_tipo_proc:
-    #             nuevo_registro.tipo_proc = j # esp llenado
+    #     # # llenar especialidad
+    #     # tipo_pro = tipo_proc.objects.all()
+    #     # for j in tipo_pro:
+    #     #     if esp == j.nombre_tipo_proc:
+    #     #         nuevo_registro.tipo_proc = j # esp llenado
 
-    #     # llenar procedimiento
-    #     proc = procedimiento.objects.all()
-    #     for j in proc:
-    #         if procedimiento_P == j.nombre_proc:
-    #             nuevo_registro.procedimiento = j # procedimiento llenado
+    #     nuevo_registro.tipo_proc = tipo_proc.objects.get(id=7) #esp llenado por especialidad
+
+
+    #     # llenar Procedimiento
+    #     proce = procedimiento.objects.all()
+    #     for j in proce:
+    #         if proc == j.nombre_proc:
+    #             nuevo_registro.procedimiento = j # procediemiento llenado
+
 
     #     # llenar concepto_salario
-    #     concepto_sala = concepto_salario.objects.all()
-    #     for j in concepto_sala:
-    #         if concepto_salario_P == j.nombre_concep_sal:
-    #             nuevo_registro.concepto_salario = j # concepto_salario llenado
+    #     concepto = concepto_salario.objects.all()
+    #     for j in concepto:
+    #         if concep == j.nombre_concep_sal:
+    #             nuevo_registro.concepto_salario = j # concep_sal llenado
+
 
     #     # llenar position
-    #     positi = position.objects.all()
-    #     for j in positi:
-    #         if position_P == j.nombre_act:
+    #     posit = position.objects.all()
+    #     for j in posit:
+    #         if ubica == j.nombre_act:
     #             nuevo_registro.position = j # position llenado
 
-    #     nuevo_registro.costo = costo_P # costo llenado
 
+    #     nuevo_registro.costo = valor #llenar valor
 
     #     nuevo_registro.save()
-
 
         
     salario_1 = salario.objects.all()#[:1000]
