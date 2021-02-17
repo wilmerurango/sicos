@@ -4,6 +4,9 @@ from django.contrib import admin
 
 from facturacion.models import *
 
+admin.site.register(RegistroEnvioMail)
+
+
 admin.site.register(especialista)
 admin.site.register(fac_especialista)
 admin.site.register(especialista_cpp_aux)
@@ -13,6 +16,7 @@ admin.site.register(uvt)
 admin.site.register(reten_383)
 admin.site.register(retencion)
 admin.site.register(cuenta_reten)
+
 
 admin.site.register(arriendo)
 admin.site.register(cpp_arriendo)

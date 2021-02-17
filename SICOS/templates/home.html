@@ -35,14 +35,23 @@
             <div class="jumbotron"  width=7%>
                 <h3>¿ QUE DESEAS HACER HOY ?</h3>
                 <hr>
-                <a class="btn btn-primary" href="{% url 'base' %}">Cuentas por Pagar</a>
-                <a class="btn btn-primary" href="{% url 'base_cirugia' %}">Procedimientos Quirurgicos</a>
-                <a class="btn btn-primary" href="{% url 'base_solicitud' %}">Solicitudes</a>
+                    {% if perms.facturacion.add_servicio %}
+                    <a class="btn btn-primary" href="{% url 'base' %}">Cuentas por Pagar</a>
+                    <a class="btn btn-primary" href="{% url 'base_cirugia' %}">Procedimientos Quirurgicos</a>
+                    <a class="btn btn-primary" href="{% url 'base_solicitud' %}">Solicitudes</a>
+                    {% endif %}
+                    <hr>
+
+                    <a class="btn btn-primary" href="{% url 'Mail_list' %}">Facturación Electrónica - Envio de Correos </a>
+                   
+
+                <hr>
+                
             </div>
         </div>
     
         <div>
-
+            
             <center>
                 <img  width=13%   height=13% src="{% static 'img/sicos_logo_negro.jpg' %}"   alt="Logo SICOS">
             </center>
@@ -57,9 +66,6 @@
             <h2 ><center>Sistema de Costos de la Fundación Clínica del Río</center></h2>
     
         </div>
-
-        
-       
 
     </div>
 </div>

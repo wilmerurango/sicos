@@ -20,6 +20,7 @@ from django.urls import reverse_lazy
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -27,7 +28,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 SECRET_KEY = '=1z-6nz9)nc6vb(v34@y*&n2_l-0i0b%6xhift*usd37$23eus'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', '192.168.0.22']
 
@@ -145,6 +146,6 @@ LOGOUT_REDIRECT_URL = reverse_lazy('login')
 
 EMAIL_HOST = 'smtp.live.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'analista.costos@clinicadelrio.org'
-EMAIL_HOST_PASSWORD = '@WILmer24'
+EMAIL_HOST_USER = 'asistente.gerencia@clinicadelrio.org'
+EMAIL_HOST_PASSWORD = '2020Funcli'
 EMAIL_USE_TLS = True 

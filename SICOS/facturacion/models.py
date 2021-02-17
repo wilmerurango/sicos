@@ -9,6 +9,14 @@ from django.utils import timezone
 #=============================================================================================
 #=============================================================================================
 
+class RegistroEnvioMail(models.Model):
+    numero_factura = models.CharField('Numero de Factura',max_length=15)
+    fecha_envio = models.DateTimeField('Fecha de Envio')
+    Estado = models.CharField('Estado', max_length=10)
+    archivo = models.CharField('Archivo', max_length=100)
+    ruta = models.CharField('Ruta', max_length=300, null=True)
+
+
 class especialista(models.Model):
     id_esp = models.CharField('Identificación', max_length=11)
     name_esp = models.CharField('Nombre del Especialista',max_length=50)

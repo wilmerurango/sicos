@@ -47,13 +47,19 @@ urlpatterns = [
     #LOGOUT
     path('logout/',LogoutView.as_view(), name ='logout'),
 
-    
+
+    #ENVIAR EMAIL
+    path('EnviarMailAuto/',EnviarMailAuto, name ='EnviarMailAuto'),
+    path('Mail_list/',Mail_list, name ='Mail_list'),
+
     
     #REPORTES  EN EXCEL
     #arriendos
     path('report_arriendo_excel/',Reporte_arriendo_excel.as_view(), name ='report_arriendo_excel'),
     #especialistas
     path('report_especialista_excel/',Reporte_especialista_excel.as_view(), name ='report_especialista_excel'),
+    #SendMail
+    path('report_SendMail_excel/',Reporte_SendMail_excel.as_view(), name ='report_SendMail_excel'),
     
     
     #PAGINA PRINCIPAL
