@@ -32,9 +32,6 @@ class procedimiento(models.Model):
     def __str__(self):
         return '%s' % (self.nombre_proc)
     
-
-
-
 class concepto_honorario(models.Model):
     nombre_concep_hon = models.CharField('Nombre del Concepto', null = True, max_length = 30)
     
@@ -43,8 +40,6 @@ class concepto_honorario(models.Model):
     
     class Meta:
         ordering = ['nombre_concep_hon']
-
-
 
 class concepto_canasta(models.Model):
     nombre_canasta = models.CharField('Concepto de la Canasta', null = True, max_length = 85)
@@ -74,9 +69,7 @@ class canasta(models.Model):
     cantidad =  models.FloatField('Cantidad', null = True, default = 1)
     costo_und =  models.FloatField('Costo Unitario', null = True)
     costo_tot =  models.FloatField('Costo Subtotal', null = True, default=0)#este campo es calculado
-    
-
-
+   
 class honorario(models.Model):
     tipo_proc = models.ForeignKey(tipo_proc,verbose_name = 'Especialidad', null = True, on_delete=models.CASCADE)
     procedimiento = models.ForeignKey(procedimiento,verbose_name = 'Nombre del Procedimiento', null = True, on_delete=models.CASCADE)
@@ -87,7 +80,6 @@ class honorario(models.Model):
     info = models.TextField('Información', null = True, blank =  True)
     costo = models.FloatField('Costo no Paramertrizado', null = True, blank = True, default=0)
     # subtotal = models.FloatField('Subtotal', null = True)
-    
     
 class constante(models.Model):
     iss_adicional = models.FloatField('Porcentaje Ganancia', null = True)

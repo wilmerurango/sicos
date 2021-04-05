@@ -48,9 +48,13 @@ urlpatterns = [
     path('logout/',LogoutView.as_view(), name ='logout'),
 
 
+
     #ENVIAR EMAIL
     path('EnviarMailAuto/',EnviarMailAuto, name ='EnviarMailAuto'),
     path('Mail_list/',Mail_list, name ='Mail_list'),
+
+
+    path('convertirpdf/',convertirpdf, name ='convertirpdf'),
 
     
     #REPORTES  EN EXCEL

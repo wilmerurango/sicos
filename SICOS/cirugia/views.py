@@ -285,8 +285,6 @@ def consulta_info(request):
     else:
         form = consultaform()
     
-
-
     if consul.count() != 0:
         consul_ultimo = consul.last()
         

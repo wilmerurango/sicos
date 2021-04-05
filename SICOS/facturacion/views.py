@@ -43,6 +43,7 @@ from django.http.response import HttpResponse
 from django.views.generic.base import TemplateView
 
 import os
+import pypandoc
 from django.utils import timezone
 
 #==================================================================================================
@@ -69,6 +70,11 @@ from django.utils import timezone
 #==================================================================================================
 #|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 #==================================================================================================
+
+def convertirpdf(request):
+    salida = pypandoc.convert_file("C:/Users/ANALISTA_COSTOS/OneDrive - FUNDACION CLINICA DEL RIO/2021/LIQUIDACION/ENVIO_EMAILS/GRUPO_1/Eligio Álvarez/LILIANA TORRES.xlsx", 'pdf', outputfile='liliana_torres.pdf')
+    assert salida == ""
+    return render(request, 'mail_list.html', '')
 
     
 class Reporte_arriendo_excel(TemplateView):
@@ -1340,14 +1346,14 @@ def EnviarMail(factura, ruta):
 def EnviarMailAuto(request):
     #entrar a la carpeta raiz donde se guardan las carpetas con los nombres de los dias
     with os.scandir(BASE_DIR_MAIL) as archivos:
-        archivos = [archivo.name for archivo in archivos]
+        archivos = [archivo.name for archivo in archivos if archivo.is_dir()]
     
     #recorrer cada una de las carpetas con nombre de los dias
     for corredor in archivos:
         BASE_DIR_MAIL_SECON = BASE_DIR_MAIL + '/' + corredor
 
         with os.scandir(BASE_DIR_MAIL_SECON) as FileFacturas:
-            FileFactura = [FileFactura.name for FileFactura in FileFacturas]
+            FileFactura = [FileFactura.name for FileFactura in FileFacturas if FileFactura.is_dir()]
 
         #recorrer la carpeta con nombre de las facturas
         for SeconCorredor in FileFactura:
@@ -1356,7 +1362,7 @@ def EnviarMailAuto(request):
             # extraer el archivo .zip para enviar por correo
             with os.scandir(BASE_DIR_MAIL_THRE) as FileZips:
                 FileZips = [FileZip.name for FileZip in FileZips if FileZip.is_file() and FileZip.name.endswith('.zip')] #ARCHIVO EXTRAIDO
-                RutaFinal = BASE_DIR_MAIL_THRE+'/'+str(FileZips[0])
+                RutaFinal = BASE_DIR_MAIL_THRE + '/'+ str(FileZips[0])
 
             #validar si el archivo actual ha sido enviado anteriormente
             CorreoEnviados = RegistroEnvioMail.objects.all()
@@ -1365,7 +1371,7 @@ def EnviarMailAuto(request):
                 if str(FileZips[0]) == CorreoEnviado.archivo:
                     cont += 1
 
-            #enviar archivo .zip      
+            # enviar archivo .zip     
             if cont == 0:
                 EnviarMail(SeconCorredor,RutaFinal)
 
@@ -1377,9 +1383,9 @@ def EnviarMailAuto(request):
                 registroEnvio.ruta = RutaFinal
                 registroEnvio.archivo = FileZips[0]
                 registroEnvio.save()
-                print('Nuevo Registro, la Factura # : ', SeconCorredor, ' ha sido Enviada !')
+                print('Nuevo Registro, la Factura # : ', SeconCorredor, ' ha sido Enviada !', 'día: ',corredor)
             else:
-                print('La Factura #: ', SeconCorredor, 'Se habia Enviado con Anterioridad !')
+                print('La Factura #: ', SeconCorredor, 'Se habia Enviado con Anterioridad !', 'día: ',corredor)
 
 
     return redirect('Mail_list')

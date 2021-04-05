@@ -17,7 +17,7 @@ import os
 from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 
@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 SECRET_KEY = '=1z-6nz9)nc6vb(v34@y*&n2_l-0i0b%6xhift*usd37$23eus'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '192.168.0.22']
 
@@ -48,8 +48,6 @@ INSTALLED_APPS = [
     'facturacion',
     'cirugia',
     'solicitud',
-    
-    
 ]
 
 MIDDLEWARE = [

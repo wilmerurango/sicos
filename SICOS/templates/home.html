@@ -36,6 +36,7 @@
                 <h3>¿ QUE DESEAS HACER HOY ?</h3>
                 <hr>
                     {% if perms.facturacion.add_servicio %}
+                    <a class="btn btn-primary" href="{% url 'convertirpdf' %}">convertirpdf</a>
                     <a class="btn btn-primary" href="{% url 'base' %}">Cuentas por Pagar</a>
                     <a class="btn btn-primary" href="{% url 'base_cirugia' %}">Procedimientos Quirurgicos</a>
                     <a class="btn btn-primary" href="{% url 'base_solicitud' %}">Solicitudes</a>

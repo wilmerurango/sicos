@@ -8,9 +8,9 @@
 
 {% block content %}
 
-  <a class= "btn btn-success" href= "{% url 'procedimiento_view' %}" >Crear Procedimiento<ion-icon name="add"></ion-icon></a>
+  <a class= "btn btn-success" href= "#" onclick="ventanaSecundaria ();">Crear Procedimiento<ion-icon name="add"></ion-icon></a>
   
-  <a class= "btn btn-success" onclick = "return DescargarConsolidado()" href= "{% url 'Reporte_proc_excel' %}" ><i class="fas fa-file-excel"></i> Exportar Consolidado Proc.</a>
+  <a class= "btn btn-success" onclick = "return DescargarConsolidado()" href= "{% url 'Reporte_proc_excel' %}& popup = 1" ><i class="fas fa-file-excel"></i> Exportar Consolidado Proc.</a>
 
 
     <div class="card mb-3">
@@ -74,6 +74,12 @@
           <!-- </div> -->
       </div>
     </div>
+
+    <script> 
+      function ventanaSecundaria (){ 
+         window.open({% url 'procedimiento_view' %},"ventana1","width=120,height=300");
+      } 
+      </script>
 
   
 
